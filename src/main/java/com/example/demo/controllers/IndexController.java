@@ -4,7 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
+
+import com.example.demo.models.Usuario;
+
 
 @Controller
 
@@ -30,6 +32,20 @@ public class IndexController {
 		model.addAttribute("titulo", "42");
 		// index es la vista,el archivo html creado
 		return "index"; 
+		
+	}
+	
+	@RequestMapping("/perfil")
+	
+	public String perfil(Model model) {
+		Usuario usuario = new Usuario();
+		usuario.setNombre("Paco");
+		usuario.setApellido("Salas");
+		
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("titulo", "Perfil del usuario: ".concat(usuario.getNombre()));
+		
+		return "perfil";
 		
 	}
 
