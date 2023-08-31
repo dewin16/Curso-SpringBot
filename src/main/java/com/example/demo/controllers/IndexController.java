@@ -1,28 +1,36 @@
 package com.example.demo.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
-@RestController
+@Controller
+
+//Añadir "/index" al @Request mapping hace que tengas que añadir /index en la busqueda y por lo tanto
+//localhost:8080 no devuelve nada
+
+
 @RequestMapping("/index")
 
 public class IndexController {
 	
-	//RequestMapping es la formula principal, dentro de este se deberia de especificar el metodo. El metodo default es Get
+//RequestMapping es la formula principal, dentro de este se deberia de especificar el metodo. El metodo default es Get
 	
-	//@RequestMapping(value="/index, method=RequestMethod.Get) seria el ejemplo de la frase anterior
+//@RequestMapping(value="/index, method=RequestMethod.Get) seria el ejemplo de la frase anterior
 	
-	//Utilizamos GetMapping en lugar de RequestMapping porque te ahorrarias especificar el metodo ya que este se incluye en el @
+//Utilizamos GetMapping en lugar de RequestMapping porque te ahorrarias especificar el metodo ya que este se incluye en el @
 	
 	
-	@GetMapping(value = {"/index","/","/home"})
+	@GetMapping(value = {"/index","/","","/home"})
 	
-	public String index() {
-		return "index";
+	
+	public String index(Model model) {
+		model.addAttribute("titulo", "42");
+		// index es la vista,el archivo html creado
+		return "index"; 
+		
 	}
 
 }
